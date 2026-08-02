@@ -1,0 +1,281 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "36e9bb48081ca93ab5d5",
+  "position": {
+    "x": 937.91258657750177,
+    "y": 240.89801767375209,
+    "z": 13000,
+    "height": 464.67637926916649,
+    "width": 327.71913064246479,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "keyDriversVisual",
+    "query": {
+      "queryState": {
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "github_dataset"
+                        }
+                      },
+                      "Property": "forks_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(github_dataset.forks_count)",
+              "nativeQueryRef": "Sum of forks_count"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "github_dataset"
+                    }
+                  },
+                  "Property": "language"
+                }
+              },
+              "queryRef": "github_dataset.language",
+              "nativeQueryRef": "language"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "github_dataset"
+                        }
+                      },
+                      "Property": "contributors"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(github_dataset.contributors)",
+              "nativeQueryRef": "Sum of contributors"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "github_dataset"
+                        }
+                      },
+                      "Property": "pull_requests"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(github_dataset.pull_requests)",
+              "nativeQueryRef": "Sum of pull_requests"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "github_dataset"
+                        }
+                      },
+                      "Property": "issues_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(github_dataset.issues_count)",
+              "nativeQueryRef": "Sum of issues_count"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "github_dataset"
+                    }
+                  },
+                  "Property": "stars_count"
+                }
+              },
+              "queryRef": "github_dataset.stars_count",
+              "nativeQueryRef": "stars_count"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "github_dataset"
+                      }
+                    },
+                    "Property": "forks_count"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "keyDrivers": [
+        {
+          "properties": {
+            "selectedAnalysis": {
+              "expr": {
+                "Literal": {
+                  "Value": "'topProfiles'"
+                }
+              }
+            },
+            "numericTargetSelectedKind": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.2
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bd28ad9d821d70634c85",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "github_dataset"
+              }
+            },
+            "Property": "stars_count"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b20e5b02c08b0646b4ea",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "github_dataset"
+              }
+            },
+            "Property": "language"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}
