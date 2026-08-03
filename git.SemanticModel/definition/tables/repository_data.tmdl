@@ -1,0 +1,106 @@
+table repository_data
+	lineageTag: 6b03cfcf-5658-4ae8-b918-46298fe7ef4e
+
+	column name
+		dataType: string
+		lineageTag: ff8a02ee-1c5a-4fec-be63-6467df9cc730
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column stars_count
+		dataType: int64
+		formatString: 0
+		lineageTag: a1e7ede0-c300-4a21-aba1-929d9e27533c
+		summarizeBy: sum
+		sourceColumn: stars_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column forks_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 2994af24-fb22-476f-8cdf-5a0642d9f9c6
+		summarizeBy: sum
+		sourceColumn: forks_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column watchers
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bb91480-7a05-497e-a1e0-db1fdcd2b512
+		summarizeBy: sum
+		sourceColumn: watchers
+
+		annotation SummarizationSetBy = Automatic
+
+	column pull_requests
+		dataType: int64
+		formatString: 0
+		lineageTag: 705f7a1e-a5bc-49d8-abd1-82c6defb0ef0
+		summarizeBy: sum
+		sourceColumn: pull_requests
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_language
+		dataType: string
+		lineageTag: f91ba2b1-a0f3-4f56-b82e-09d9f464181a
+		summarizeBy: none
+		sourceColumn: primary_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column languages_used
+		dataType: string
+		lineageTag: 6ec23f01-59ee-432e-bd84-b0b195777c23
+		summarizeBy: none
+		sourceColumn: languages_used
+
+		annotation SummarizationSetBy = Automatic
+
+	column commit_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f7d00c7-e81e-4881-ab24-ab87b3913953
+		summarizeBy: sum
+		sourceColumn: commit_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 24c594ad-c42a-4e59-a10b-7b23b487beb0
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: 6065ee97-d602-479f-b6fb-b255ae3264c6
+			defaultHierarchy: LocalDateTable_e834d24b-e64a-4c2b-a8bd-2a611d9a1d41.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column licence
+		dataType: string
+		lineageTag: cae36722-97b6-4416-a0a0-24448bd4d332
+		summarizeBy: none
+		sourceColumn: licence
+
+		annotation SummarizationSetBy = Automatic
+
+	partition repository_data = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\dell\Downloads\archive\repository_data.csv"), [Delimiter = ",", Columns = 10, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"name", type text}, {"stars_count", Int64.Type}, {"forks_count", Int64.Type}, {"watchers", Int64.Type}, {"pull_requests", Int64.Type}, {"primary_language", type text}, {"languages_used", type text}, {"commit_count", Int64.Type}, {"created_at", type datetime}, {"licence", type text}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

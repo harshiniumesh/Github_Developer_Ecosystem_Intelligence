@@ -1,0 +1,78 @@
+table github_dataset
+	lineageTag: 7391b893-2075-4317-8d18-781e27a7ae52
+
+	column repositories
+		dataType: string
+		lineageTag: ba994d8d-f10a-4d04-b6d2-6fc7d29dd3c3
+		summarizeBy: none
+		sourceColumn: repositories
+
+		annotation SummarizationSetBy = Automatic
+
+	column stars_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 8678b85d-be37-42ef-afe1-5e6c10b5d914
+		summarizeBy: sum
+		sourceColumn: stars_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column forks_count
+		dataType: int64
+		formatString: 0
+		lineageTag: c76f20c8-7135-47f7-a682-6f7a0c6cddd1
+		summarizeBy: sum
+		sourceColumn: forks_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column issues_count
+		dataType: int64
+		formatString: 0
+		lineageTag: c4a9292a-7068-4b86-9207-5baacfb8b07b
+		summarizeBy: sum
+		sourceColumn: issues_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column pull_requests
+		dataType: int64
+		formatString: 0
+		lineageTag: 670cbdd7-685d-4b9e-b546-df05004e5c03
+		summarizeBy: sum
+		sourceColumn: pull_requests
+
+		annotation SummarizationSetBy = Automatic
+
+	column contributors
+		dataType: int64
+		formatString: 0
+		lineageTag: f0967ad3-265b-4335-91a7-ade6b93a6ac6
+		summarizeBy: sum
+		sourceColumn: contributors
+
+		annotation SummarizationSetBy = Automatic
+
+	column language
+		dataType: string
+		lineageTag: 4d53ffca-a40c-4f72-9b2a-f2a73eba41f3
+		summarizeBy: none
+		sourceColumn: language
+
+		annotation SummarizationSetBy = Automatic
+
+	partition github_dataset = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\dell\Downloads\archive\github_dataset.csv"), [Delimiter = ",", Columns = 7, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"repositories", type text}, {"stars_count", Int64.Type}, {"forks_count", Int64.Type}, {"issues_count", Int64.Type}, {"pull_requests", Int64.Type}, {"contributors", Int64.Type}, {"language", type text}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

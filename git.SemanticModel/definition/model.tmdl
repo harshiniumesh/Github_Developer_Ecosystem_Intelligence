@@ -1,0 +1,21 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["repository_data","github_dataset"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table repository_data
+ref table DateTableTemplate_8d73cea6-a1cb-4171-93fc-3e4056651444
+ref table LocalDateTable_e834d24b-e64a-4c2b-a8bd-2a611d9a1d41
+ref table github_dataset
+
+ref cultureInfo en-GB
+

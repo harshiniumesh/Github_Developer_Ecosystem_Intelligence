@@ -1,0 +1,5 @@
+relationship 6065ee97-d602-479f-b6fb-b255ae3264c6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: repository_data.created_at
+	toColumn: LocalDateTable_e834d24b-e64a-4c2b-a8bd-2a611d9a1d41.Date
+
